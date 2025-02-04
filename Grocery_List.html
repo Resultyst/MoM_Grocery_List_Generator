@@ -12,7 +12,7 @@
       padding: 20px;
     }
     .container {
-      max-width: 600px;
+      max-width: 1200px;
       margin: 0 auto;
       background: #fff;
       padding: 20px;
@@ -23,14 +23,25 @@
       text-align: center;
       color: #333;
     }
+    .categories {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
     .category {
-      margin-bottom: 20px;
+      flex: 1;
+      min-width: 250px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
     .category h2 {
       background-color: #007bff;
       color: white;
       padding: 10px;
       border-radius: 4px;
+      text-align: center;
     }
     .category ul {
       list-style-type: none;
@@ -79,118 +90,123 @@
     <h1>Grocery List</h1>
 
     <!-- Categories -->
-    <div class="category">
-      <h2>Pulses & Lentils (Dhal)</h2>
-      <ul>
-        <li>
-          <span>Dhoor Dhal (தூர தால்) - Pigeon Pea (Toor Dal)</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Dhoor Dhal (தூர தால்)')">-</button>
-            <span id="qty-Dhoor Dhal (தூர தால்)">0</span>
-            <button onclick="increaseQuantity('Dhoor Dhal (தூர தால்)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Orid Dhal (உருது தால்) - Urad Dal</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Orid Dhal (உருது தால்)')">-</button>
-            <span id="qty-Orid Dhal (உருது தால்)">0</span>
-            <button onclick="increaseQuantity('Orid Dhal (உருது தால்)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Channa Dhal (சணா தால்) - Chickpea Split (Chana Dal)</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Channa Dhal (சணா தால்)')">-</button>
-            <span id="qty-Channa Dhal (சணா தால்)">0</span>
-            <button onclick="increaseQuantity('Channa Dhal (சணா தால்)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Black Channa (கருப்பு கப்ஸா) - Black Chickpeas</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Black Channa (கருப்பு கப்ஸா)')">-</button>
-            <span id="qty-Black Channa (கருப்பு கப்ஸா)">0</span>
-            <button onclick="increaseQuantity('Black Channa (கருப்பு கப்ஸா)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>White Channa (வெள்ளை கப்ஸா) - White Chickpeas</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('White Channa (வெள்ளை கப்ஸா)')">-</button>
-            <span id="qty-White Channa (வெள்ளை கப்ஸா)">0</span>
-            <button onclick="increaseQuantity('White Channa (வெள்ளை கப்ஸா)')">+</button>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <div class="categories">
+      <!-- Pulses & Lentils (Dhal) -->
+      <div class="category">
+        <h2>Pulses & Lentils (Dhal)</h2>
+        <ul>
+          <li>
+            <span>Pigeon Pea (Toor Dal)</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Pigeon Pea (Toor Dal)')">-</button>
+              <span id="qty-Pigeon Pea (Toor Dal)">0</span>
+              <button onclick="increaseQuantity('Pigeon Pea (Toor Dal)')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Urad Dal</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Urad Dal')">-</button>
+              <span id="qty-Urad Dal">0</span>
+              <button onclick="increaseQuantity('Urad Dal')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Chickpea Split (Chana Dal)</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Chickpea Split (Chana Dal)')">-</button>
+              <span id="qty-Chickpea Split (Chana Dal)">0</span>
+              <button onclick="increaseQuantity('Chickpea Split (Chana Dal)')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Black Chickpeas</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Black Chickpeas')">-</button>
+              <span id="qty-Black Chickpeas">0</span>
+              <button onclick="increaseQuantity('Black Chickpeas')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>White Chickpeas</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('White Chickpeas')">-</button>
+              <span id="qty-White Chickpeas">0</span>
+              <button onclick="increaseQuantity('White Chickpeas')">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-    <div class="category">
-      <h2>Rice & Flours</h2>
-      <ul>
-        <li>
-          <span>Basmati (பாஸ்மதி அரிசி) - Basmati Rice</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Basmati (பாஸ்மதி அரிசி)')">-</button>
-            <span id="qty-Basmati (பாஸ்மதி அரிசி)">0</span>
-            <button onclick="increaseQuantity('Basmati (பாஸ்மதி அரிசி)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Seeragama (சீரகம் அரிசி) - Aromatic Rice</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Seeragama (சீரகம் அரிசி)')">-</button>
-            <span id="qty-Seeragama (சீரகம் அரிசி)">0</span>
-            <button onclick="increaseQuantity('Seeragama (சீரகம் அரிசி)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Idly Rice (இட்லி அரிசி) - Rice for Idly</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Idly Rice (இட்லி அரிசி)')">-</button>
-            <span id="qty-Idly Rice (இட்லி அரிசி)">0</span>
-            <button onclick="increaseQuantity('Idly Rice (இட்லி அரிசி)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Raw Rice (சாதாரண அரிசி) - Raw Rice</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Raw Rice (சாதாரண அரிசி)')">-</button>
-            <span id="qty-Raw Rice (சாதாரண அரிசி)">0</span>
-            <button onclick="increaseQuantity('Raw Rice (சாதாரண அரிசி)')">+</button>
-          </div>
-        </li>
-      </ul>
-    </div>
+      <!-- Rice & Flours -->
+      <div class="category">
+        <h2>Rice & Flours</h2>
+        <ul>
+          <li>
+            <span>Basmati Rice</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Basmati Rice')">-</button>
+              <span id="qty-Basmati Rice">0</span>
+              <button onclick="increaseQuantity('Basmati Rice')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Aromatic Rice</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Aromatic Rice')">-</button>
+              <span id="qty-Aromatic Rice">0</span>
+              <button onclick="increaseQuantity('Aromatic Rice')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Rice for Idly</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Rice for Idly')">-</button>
+              <span id="qty-Rice for Idly">0</span>
+              <button onclick="increaseQuantity('Rice for Idly')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Raw Rice</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Raw Rice')">-</button>
+              <span id="qty-Raw Rice">0</span>
+              <button onclick="increaseQuantity('Raw Rice')">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-    <div class="category">
-      <h2>Spices & Seasonings</h2>
-      <ul>
-        <li>
-          <span>Turmeric (மஞ்சள்) - Turmeric Powder</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Turmeric (மஞ்சள்)')">-</button>
-            <span id="qty-Turmeric (மஞ்சள்)">0</span>
-            <button onclick="increaseQuantity('Turmeric (மஞ்சள்)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Sambar Powder (சாம்பார் பொடி) - Sambar Powder</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Sambar Powder (சாம்பார் பொடி)')">-</button>
-            <span id="qty-Sambar Powder (சாம்பார் பொடி)">0</span>
-            <button onclick="increaseQuantity('Sambar Powder (சாம்பார் பொடி)')">+</button>
-          </div>
-        </li>
-        <li>
-          <span>Garam Masala (கரம் மசாலா) - Garam Masala</span>
-          <div class="quantity">
-            <button onclick="decreaseQuantity('Garam Masala (கரம் மசாலா)')">-</button>
-            <span id="qty-Garam Masala (கரம் மசாலா)">0</span>
-            <button onclick="increaseQuantity('Garam Masala (கரம் மசாலா)')">+</button>
-          </div>
-        </li>
-      </ul>
+      <!-- Spices & Seasonings -->
+      <div class="category">
+        <h2>Spices & Seasonings</h2>
+        <ul>
+          <li>
+            <span>Turmeric Powder</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Turmeric Powder')">-</button>
+              <span id="qty-Turmeric Powder">0</span>
+              <button onclick="increaseQuantity('Turmeric Powder')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Sambar Powder</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Sambar Powder')">-</button>
+              <span id="qty-Sambar Powder">0</span>
+              <button onclick="increaseQuantity('Sambar Powder')">+</button>
+            </div>
+          </li>
+          <li>
+            <span>Garam Masala</span>
+            <div class="quantity">
+              <button onclick="decreaseQuantity('Garam Masala')">-</button>
+              <span id="qty-Garam Masala">0</span>
+              <button onclick="increaseQuantity('Garam Masala')">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Generate PDF Button -->
@@ -266,18 +282,18 @@
 
     // Initialize quantities for all items on page load
     function initializeAllQuantities() {
-      initializeQuantity('Dhoor Dhal (தூர தால்)');
-      initializeQuantity('Orid Dhal (உருது தால்)');
-      initializeQuantity('Channa Dhal (சணா தால்)');
-      initializeQuantity('Black Channa (கருப்பு கப்ஸா)');
-      initializeQuantity('White Channa (வெள்ளை கப்ஸா)');
-      initializeQuantity('Basmati (பாஸ்மதி அரிசி)');
-      initializeQuantity('Seeragama (சீரகம் அரிசி)');
-      initializeQuantity('Idly Rice (இட்லி அரிசி)');
-      initializeQuantity('Raw Rice (சாதாரண அரிசி)');
-      initializeQuantity('Turmeric (மஞ்சள்)');
-      initializeQuantity('Sambar Powder (சாம்பார் பொடி)');
-      initializeQuantity('Garam Masala (கரம் மசாலா)');
+      initializeQuantity('Pigeon Pea (Toor Dal)');
+      initializeQuantity('Urad Dal');
+      initializeQuantity('Chickpea Split (Chana Dal)');
+      initializeQuantity('Black Chickpeas');
+      initializeQuantity('White Chickpeas');
+      initializeQuantity('Basmati Rice');
+      initializeQuantity('Aromatic Rice');
+      initializeQuantity('Rice for Idly');
+      initializeQuantity('Raw Rice');
+      initializeQuantity('Turmeric Powder');
+      initializeQuantity('Sambar Powder');
+      initializeQuantity('Garam Masala');
     }
 
     initializeAllQuantities();
