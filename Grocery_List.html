@@ -5,23 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grocery List</title>
   <style>
+    /* Modern Design */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e2f;
       margin: 0;
       padding: 20px;
+      color: #ffffff;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      background: #fff;
+      background-color: #2a2a40;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
     h1 {
       text-align: center;
-      color: #333;
+      color: #ffffff;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
     }
     .categories {
       display: flex;
@@ -31,17 +36,20 @@
     .category {
       flex: 1;
       min-width: 250px;
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      background-color: #3a3a5a;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     .category h2 {
       background-color: #007bff;
       color: white;
-      padding: 10px;
-      border-radius: 4px;
+      padding: 12px;
+      border-radius: 8px;
       text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 500;
     }
     .category ul {
       list-style-type: none;
@@ -52,36 +60,82 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
+      padding: 12px;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.3s ease;
     }
     .category li:last-child {
       border-bottom: none;
     }
+    .category li:hover {
+      background-color: #4a4a6a;
+    }
     .quantity {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
     }
     .quantity button {
       background-color: #007bff;
-      padding: 5px 10px;
-      border-radius: 4px;
+      padding: 8px 12px;
+      border-radius: 6px;
       border: none;
       color: white;
       cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .quantity button:hover {
+      background-color: #005bb5;
+    }
+    .quantity span {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .custom-item {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+    .custom-item input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      background-color: #2a2a40;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+    .custom-item button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .custom-item button:hover {
+      background-color: #218838;
     }
     .generate-pdf {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 30px;
     }
     .generate-pdf button {
       background-color: #28a745;
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
+      padding: 12px 24px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    .generate-pdf button:hover {
+      background-color: #218838;
     }
   </style>
 </head>
@@ -136,6 +190,11 @@
             </div>
           </li>
         </ul>
+        <!-- Custom Item Input -->
+        <div class="custom-item">
+          <input type="text" id="custom-pulses" placeholder="Add custom item">
+          <button onclick="addCustomItem('pulses')">Add</button>
+        </div>
       </div>
 
       <!-- Rice & Flours -->
@@ -175,6 +234,11 @@
             </div>
           </li>
         </ul>
+        <!-- Custom Item Input -->
+        <div class="custom-item">
+          <input type="text" id="custom-rice" placeholder="Add custom item">
+          <button onclick="addCustomItem('rice')">Add</button>
+        </div>
       </div>
 
       <!-- Spices & Seasonings -->
@@ -206,6 +270,11 @@
             </div>
           </li>
         </ul>
+        <!-- Custom Item Input -->
+        <div class="custom-item">
+          <input type="text" id="custom-spices" placeholder="Add custom item">
+          <button onclick="addCustomItem('spices')">Add</button>
+        </div>
       </div>
     </div>
 
@@ -247,6 +316,28 @@
     function updateQuantity(itemName) {
       document.getElementById(`qty-${itemName}`).textContent = quantities[itemName];
       localStorage.setItem('quantities', JSON.stringify(quantities));
+    }
+
+    // Add custom item
+    function addCustomItem(category) {
+      const input = document.getElementById(`custom-${category}`);
+      const itemName = input.value.trim();
+      if (itemName && !quantities[itemName]) {
+        quantities[itemName] = 0;
+        const ul = input.closest('.category').querySelector('ul');
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${itemName}</span>
+          <div class="quantity">
+            <button onclick="decreaseQuantity('${itemName}')">-</button>
+            <span id="qty-${itemName}">0</span>
+            <button onclick="increaseQuantity('${itemName}')">+</button>
+          </div>
+        `;
+        ul.appendChild(li);
+        input.value = '';
+        updateQuantity(itemName);
+      }
     }
 
     // Generate PDF
